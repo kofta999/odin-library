@@ -1,4 +1,4 @@
-const myLibrary = [new Book("a", true), new Book("b", false)];
+const myLibrary = [];
 const cards = document.querySelector("#cards");
 const dialog = document.querySelector("dialog");
 const newBookButton = document.querySelector("#new-book");

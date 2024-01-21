@@ -26,6 +26,7 @@ body {
 }
 
 #cards {
+  padding: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 50px;
@@ -95,6 +96,14 @@ dialog > form input {
   color: var(--text-color);
   border-radius: 10px;
   border: none;
+}
+
+dialog > form input:-webkit-autofill,
+dialog > form input:-webkit-autofill:hover,
+dialog > form input:-webkit-autofill:focus,
+dialog > form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #374151 inset !important;
+  -webkit-text-fill-color: var(--text-color) !important;
 }
 
 dialog > form .is-read {
