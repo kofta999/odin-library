@@ -1,0 +1,77 @@
+* {
+  --shadow: rgba(0, 0, 0, 0.16), 0px 1px 4px;
+  --text-color: #f9fafb;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #030712;
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.header {
+  background-color: #0f172a;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+#cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 20px;
+  gap: 15px;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+}
+
+.card h3 {
+  font-size: 1.5em;
+}
+
+.btn {
+  border: none;
+  font-size: 1.5em;
+  color: var(--text-color);
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+
+.read-btn {
+  background-color: #374151;
+}
+
+.remove-btn {
+  background-color: #7f1d1d;
+}
+
+.new-btn {
+  align-self: center;
+  background-color: #0f172a;
+  margin-top: 30px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+}
+
+/* dialog {
+  display: flex;
+  flex-direction: column;
+} */
