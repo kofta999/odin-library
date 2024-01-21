@@ -17,6 +17,12 @@ dialog.addEventListener("submit", (e) => {
   e.target.reset();
 });
 
+dialog.addEventListener("click", (e) => {
+  if (e.target === dialog) {
+    dialog.close();
+  }
+});
+
 myLibrary.forEach((book, index) => addBookToUI(book, index));
 
 function addBookToUI(book, index = myLibrary.length) {

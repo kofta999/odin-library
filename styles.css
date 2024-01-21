@@ -1,12 +1,14 @@
 * {
   --shadow: rgba(0, 0, 0, 0.16), 0px 1px 4px;
   --text-color: #f9fafb;
+  --bg-color: #030712;
+  box-sizing: border-box;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background-color: #030712;
+  background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -32,7 +34,6 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: #1e293b;
   padding: 20px;
   gap: 15px;
@@ -42,6 +43,7 @@ body {
 
 .card h3 {
   font-size: 1.5em;
+  text-align: center;
 }
 
 .btn {
@@ -63,7 +65,7 @@ body {
 .new-btn {
   align-self: center;
   background-color: #0f172a;
-  margin-top: 30px;
+  margin-top: 100px;
 }
 
 .btn:hover {
@@ -71,7 +73,38 @@ body {
   filter: brightness(120%);
 }
 
-/* dialog {
+dialog {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.5em;
+  border-radius: 10px;
+  border: 3px solid #1e293b;
+}
+
+dialog > form {
   display: flex;
   flex-direction: column;
-} */
+  align-items: center;
+  gap: 20px;
+}
+
+dialog > form input {
+  background-color: #374151;
+  font-size: 1em;
+  padding: 10px;
+  color: var(--text-color);
+  border-radius: 10px;
+  border: none;
+}
+
+dialog > form .is-read {
+  display: flex;
+  gap: 10px;
+}
+
+#is-read {
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 10px;
+}

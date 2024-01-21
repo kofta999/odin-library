@@ -14,15 +14,12 @@
     <dialog>
       <h3>Add a new Book</h3>
       <form method="dialog">
-        <label for="title">
-          Book title:
-          <input type="text" name="title" id="title" />
-        </label>
-        <label for="is-read">
-          Read:
+        <input type="text" name="title" id="title" placeholder="Book title" />
+        <div class="is-read">
+          <label for="is-read"> Have you read this book?: </label>
           <input type="checkbox" name="isRead" id="is-read" />
-        </label>
-        <button type="submit">Add book</button>
+        </div>
+        <button class="btn new-btn" type="submit">Add book</button>
       </form>
     </dialog>
   </body>
