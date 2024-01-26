@@ -11,8 +11,8 @@ dialog.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const book = new Book(formData.get("title"), formData.get("isRead"));
-  addBookToLibrary(book);
-  addBookToUI(book);
+  book.addToLibrary();
+  book.addToUI();
   dialog.close();
   e.target.reset();
 });
@@ -23,57 +23,60 @@ dialog.addEventListener("click", (e) => {
   }
 });
 
-myLibrary.forEach((book, index) => addBookToUI(book, index));
+class Book {
+  #bookCard;
 
-function addBookToUI(book, index = myLibrary.length) {
-  const bookCard = document.createElement("div");
-  const bookTitle = document.createElement("h3");
-  const removeButton = document.createElement("button");
-  const isReadButton = document.createElement("button");
+  constructor(title, isRead) {
+    this.title = title;
+    this.isRead = isRead;
+  }
 
-  isReadButton.textContent = book.isRead ? "Read" : "Not Read";
-  isReadButton.classList.add("btn", "read-btn");
+  markAsRead() {
+    this.isRead = !this.isRead;
+  }
 
-  removeButton.textContent = "Remove";
-  removeButton.classList.add("btn", "remove-btn");
+  addToLibrary() {
+    myLibrary.push(this);
+  }
 
-  bookTitle.textContent = book.title;
+  removeFromLibrary() {
+    const idx = myLibrary.findIndex((v) => v === this);
+    myLibrary.splice(idx, 1);
+  }
 
-  bookCard.appendChild(bookTitle);
-  bookCard.appendChild(isReadButton);
-  bookCard.appendChild(removeButton);
+  addToUI() {
+    this.#bookCard = document.createElement("div");
+    const bookTitle = document.createElement("h3");
+    const removeButton = document.createElement("button");
+    const isReadButton = document.createElement("button");
 
-  isReadButton.addEventListener("click", (e) => {
-    book.markAsRead();
-    e.target.textContent = book.isRead ? "Read" : "Not Read";
-  });
+    isReadButton.textContent = this.isRead ? "Read" : "Not Read";
+    isReadButton.classList.add("btn", "read-btn");
 
-  removeButton.addEventListener("click", () => {
-    removeBookFromLibrary(index);
-    removeBookFromUI(bookCard);
-  });
+    removeButton.textContent = "Remove";
+    removeButton.classList.add("btn", "remove-btn");
 
-  bookCard.classList.add("card");
-  cards.appendChild(bookCard);
-}
+    bookTitle.textContent = this.title;
 
-function Book(title, isRead) {
-  this.title = title;
-  this.isRead = isRead;
-}
+    this.#bookCard.appendChild(bookTitle);
+    this.#bookCard.appendChild(isReadButton);
+    this.#bookCard.appendChild(removeButton);
 
-Book.prototype.markAsRead = function () {
-  this.isRead = !this.isRead;
-};
+    isReadButton.addEventListener("click", (e) => {
+      this.markAsRead();
+      e.target.textContent = this.isRead ? "Read" : "Not Read";
+    });
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
+    removeButton.addEventListener("click", () => {
+      this.removeFromLibrary();
+      this.removeFromUI();
+    });
 
-function removeBookFromLibrary(index) {
-  myLibrary.splice(index, 1);
-}
+    this.#bookCard.classList.add("card");
+    cards.appendChild(this.#bookCard);
+  }
 
-function removeBookFromUI(card) {
-  card.remove();
+  removeFromUI() {
+    this.#bookCard.remove();
+  }
 }
